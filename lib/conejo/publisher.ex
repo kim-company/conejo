@@ -26,7 +26,7 @@ defmodule Conejo.Publisher do
   """
 
 
-  defmacro __using__(_) do
+  defmacro __using__(opts) do
     quote bind_quoted: [opts: opts], location: :keep do
       use Conejo.Channel, opts: opts
       @behaviour Conejo.Publisher
