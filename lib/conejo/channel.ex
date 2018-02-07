@@ -48,7 +48,7 @@ defmodule Conejo.Channel do
 
 
 
-  defmacro __using__(_) do
+  defmacro __using__(opts) do
     quote location: :keep do
       @behaviour Conejo.Channel
       use GenServer
@@ -56,9 +56,11 @@ defmodule Conejo.Channel do
       require Logger
       require Conejo.Connection
 
+      @otp_app Keyword.get(opts, :otp_app)
       @time_sleep 200  # wait time for conejo connection
 
-      def start_link(state, opts) do
+      def start_link(state, opts \\ []) do
+        opts = Application.get_env(@otp_app, __MODULE__, opts)
         GenServer.start_link(__MODULE__, state, opts)
       end
 
