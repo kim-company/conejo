@@ -37,7 +37,7 @@ defmodule Conejo.Connection do
     port = Confex.get_env(:conejo, :port)
     user = Confex.get_env(:conejo, :username)
     password = Confex.get_env(:conejo, :password)
-    
+
     vhost = case Confex.fetch_env(:conejo, :vhost) do
       {:ok, custom_vhost} -> "/#{custom_vhost}"
       {:ok, "/"} -> ""

@@ -27,8 +27,8 @@ defmodule Conejo.Publisher do
 
 
   defmacro __using__(_) do
-    quote location: :keep do
-      use Conejo.Channel
+    quote bind_quoted: [opts: opts], location: :keep do
+      use Conejo.Channel, opts: opts
       @behaviour Conejo.Publisher
 
       def declare_queue(_chan, _queue, _options) do
