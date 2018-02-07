@@ -51,12 +51,12 @@ defmodule Conejo.Publisher do
         nil
       end
 
-      def async_publish(publisher, exchange, topic, message) do
-        GenServer.cast(publisher, {:publish, exchange, topic, message})
+      def async_publish(publisher, exchange, topic, message, options \\ []) do
+        GenServer.cast(publisher, {:publish, exchange, topic, message, options})
       end
 
-      def sync_publish(publisher, exchange, topic, message) do
-        GenServer.call(publisher, {:publish, exchange, topic, message})
+      def sync_publish(publisher, exchange, topic, message, options \\ []) do
+        GenServer.call(publisher, {:publish, exchange, topic, message, options})
       end
 
     end

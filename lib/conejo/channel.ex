@@ -69,13 +69,13 @@ defmodule Conejo.Channel do
         {:ok, %{chan: nil, rabbitmq_options: rabbitmq_options}}
       end
 
-      def handle_cast({:publish, exchange, topic, message}, chan) do
-        Task.start(fn -> AMQP.Basic.publish(chan, exchange, topic, message) end)
+      def handle_cast({:publish, exchange, topic, message, options}, chan) do
+        Task.start(fn -> AMQP.Basic.publish(chan, exchange, topic, message, options) end)
         {:noreply, chan}
       end
 
-      def handle_call({:publish, exchange, topic, message}, _from, chan) do
-        AMQP.Basic.publish(chan, exchange, topic, message)
+      def handle_call({:publish, exchange, topic, message, options}, _from, chan) do
+        AMQP.Basic.publish(chan, exchange, topic, message, options)
         {:reply, :ok, chan}
       end
 
