@@ -50,8 +50,8 @@ defmodule Conejo.Consumer do
   @callback handle_consume(channel, payload, params) :: any
 
   defmacro __using__(opts) do
-    quote bind_quoted: [opts: opts], location: :keep do
-      use Conejo.Channel, opts: opts
+    quote location: :keep do
+      use Conejo.Channel, opts: unquote(opts)
       @behaviour Conejo.Consumer
 
       def declare_queue(chan, queue, options) do

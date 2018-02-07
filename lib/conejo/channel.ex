@@ -49,14 +49,14 @@ defmodule Conejo.Channel do
 
 
   defmacro __using__(opts) do
-    quote bind_quoted: [opts: opts], location: :keep do
+    quote location: :keep do
       @behaviour Conejo.Channel
       use GenServer
       use AMQP
       require Logger
       require Conejo.Connection
 
-      @otp_app Keyword.fetch!(opts, :otp_app)
+      @otp_app Keyword.fetch!(unquote(opts), :otp_app)
       @time_sleep 200  # wait time for conejo connection
 
       def start_link(state, opts \\ []) do
