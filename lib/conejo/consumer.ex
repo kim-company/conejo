@@ -51,7 +51,7 @@ defmodule Conejo.Consumer do
 
   defmacro __using__(opts) do
     quote location: :keep do
-      use Conejo.Channel, opts: unquote(opts)
+      use Conejo.Channel, unquote(opts)
       @behaviour Conejo.Consumer
 
       def declare_queue(chan, queue, options) do
