@@ -58,9 +58,9 @@ defmodule Conejo.Channel do
       @otp_app Keyword.fetch!(unquote(opts), :otp_app)
       @time_sleep Keyword.get(unquote(opts), :sleep, 200)  # wait time for conejo connection
 
-      def start_link(state, opts \\ []) do
-        opts = Application.get_env(@otp_app, __MODULE__, opts)
-        GenServer.start_link(__MODULE__, state, opts)
+      def start_link(opts \\ []) do
+        config = Application.get_env(@otp_app, __MODULE__, [])
+        GenServer.start_link(__MODULE__, config, opts)
       end
 
       def init(args) do
