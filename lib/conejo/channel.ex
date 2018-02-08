@@ -54,7 +54,6 @@ defmodule Conejo.Channel do
       use GenServer
       use AMQP
       require Logger
-      require Conejo.Connection
 
       @otp_app Keyword.fetch!(unquote(opts), :otp_app)
       @time_sleep Keyword.get(unquote(opts), :sleep, 200)  # wait time for conejo connection
