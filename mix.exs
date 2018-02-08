@@ -28,10 +28,12 @@ defmodule Conejo.Mixfile do
   end
 
   defp deps do
-    [{:amqp, "~> 0.2.1"},
-    {:confex, "~> 3.2.0"},
-    {:earmark, ">= 0.0.0", only: :dev},
-    {:ex_doc, ">= 0.0.0", only: :dev}]
+    [
+      {:amqp, "~> 1.0.0-pre4"},
+      {:confex, "~> 3.2.0"},
+      {:earmark, ">= 0.0.0", only: :dev},
+      {:ex_doc, ">= 0.0.0", only: :dev}
+    ]
   end
 
  defp package do
