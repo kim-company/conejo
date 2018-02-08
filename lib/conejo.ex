@@ -19,7 +19,7 @@ defmodule Conejo do
   ```
 
   If you whish to use a virtual host, you can specify an optional parameter called "vhost" containing your wanted vhost (eg. "dev").
-  
+
   check `Conejo.Consumer` in order to know the its configuration.
 
   `Conejo.Publisher` does not need any configuration.

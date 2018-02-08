@@ -126,9 +126,11 @@ defmodule Conejo.Channel do
                Process.monitor(:conejo_connection)
                Process.link(Map.get(chan, :pid))
                queue = options[:queue_name]
-               declare_exchange(chan, Map.get(options, :exchange, "exchange"), Map.get(options, :exchange_type, "topic"))
+               if Map.has_key?(options, :exchange) do
+                declare_exchange(chan, Map.get(options, :exchange, "exchange"), Map.get(options, :exchange_type, "topic"))
+               end
                declare_queue(chan, queue, Map.get(options, :queue_declaration_options, []))
-               bind_queue(chan, queue, Map.get(options, :exchange, "exchange"), Map.get(options, :queue_bind_options, []))
+               bind_queue(chan, queue, Map.get(options, :exchange, ""), Map.get(options, :queue_bind_options, []))
                {:ok, _consumer_tag} = consume_data(chan, queue, Map.get(options, :consume_options, []))
                Logger.info("Channel connected #{inspect self()}")
                chan
